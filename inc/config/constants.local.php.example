@@ -1,0 +1,8 @@
+<?php
+// Copy to constants.local.php on the server (or locally). Do not commit constants.local.php.
+return [
+	'DB_HOST' => 'localhost',
+	'DB_NAME' => 'youruser_shop_inventory',
+	'DB_USER' => 'youruser_shopuser',
+	'DB_PASSWORD' => 'your-strong-db-password',
+];

@@ -1,0 +1,3 @@
+inc/config/constants.local.php
+deploy/host-credentials.ps1
+deploy/*.zip

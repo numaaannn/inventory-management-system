@@ -1,0 +1,49 @@
+# Deploy to cPanel/shared hosting over FTP when secrets are configured.
+# One-time on server: import deploy/shop_inventory.sql in phpMyAdmin.
+
+name: Deploy to cPanel
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    if: ${{ secrets.FTP_SERVER != '' }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Create production DB config
+        env:
+          DB_HOST: ${{ secrets.DB_HOST }}
+          DB_NAME: ${{ secrets.DB_NAME }}
+          DB_USER: ${{ secrets.DB_USER }}
+          DB_PASSWORD: ${{ secrets.DB_PASSWORD }}
+        run: |
+          cat > inc/config/constants.local.php << EOF
+          <?php
+          return [
+          	'DB_HOST' => '${DB_HOST}',
+          	'DB_NAME' => '${DB_NAME}',
+          	'DB_USER' => '${DB_USER}',
+          	'DB_PASSWORD' => '${DB_PASSWORD}',
+          ];
+          EOF
+
+      - name: FTP deploy
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+        with:
+          server: ${{ secrets.FTP_SERVER }}
+          username: ${{ secrets.FTP_USERNAME }}
+          password: ${{ secrets.FTP_PASSWORD }}
+          local-dir: ./
+          server-dir: ${{ secrets.FTP_REMOTE_DIR }}/
+          exclude: |
+            **/.git*
+            **/.github/**
+            **/deploy/host-credentials.ps1
+            **/deploy/*.zip
+            deploy/publish.ps1
+            deploy/host-credentials.example.ps1

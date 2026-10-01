@@ -1,0 +1,9 @@
+{
+	"name": "numaaannn/inventory-management-system",
+	"type": "project",
+	"require": {
+		"php": "^8.2",
+		"ext-pdo": "*",
+		"ext-pdo_mysql": "*"
+	}
+}

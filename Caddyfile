@@ -1,0 +1,14 @@
+{
+	frankenphp
+}
+
+:{$PORT:80} {
+	root * /app
+
+	@secrets path /inc/config/*.sql /deploy/*
+	respond @secrets 403
+
+	encode zstd gzip
+	php_server
+	file_server
+}

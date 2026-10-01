@@ -1,0 +1,8 @@
+.git
+.github
+deploy/*.zip
+deploy/host-credentials.ps1
+deploy/publish.ps1
+deploy/host-credentials.example.ps1
+*.md
+screenshots

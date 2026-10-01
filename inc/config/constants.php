@@ -32,6 +32,12 @@
 			$dbConfig = array_merge($dbConfig, $localConfig);
 		}
 	}
+	foreach (['DB_HOST', 'DB_NAME', 'DB_USER', 'DB_PASSWORD'] as $envKey) {
+		$envValue = getenv($envKey);
+		if ($envValue !== false && $envValue !== '') {
+			$dbConfig[$envKey] = $envValue;
+		}
+	}
 	define('DB_HOST', $dbConfig['DB_HOST']);
 	define('DB_NAME', $dbConfig['DB_NAME']);
 	define('DB_USER', $dbConfig['DB_USER']);

@@ -5,6 +5,7 @@ RUN composer install --no-dev --no-interaction --no-progress --optimize-autoload
 
 FROM dunglas/frankenphp:1-php8.2-alpine
 WORKDIR /app
+RUN install-php-extensions pdo_mysql
 COPY --from=dependencies /app/vendor ./vendor
 COPY Caddyfile /etc/caddy/Caddyfile
 COPY . /app

@@ -1,7 +1,11 @@
 <?php
 header('Content-Type: application/json');
 
-$health = ['status' => 'ok', 'service' => 'inventory-management-system'];
+$health = [
+	'status' => 'ok',
+	'service' => 'inventory-management-system',
+	'pdo_drivers' => PDO::getAvailableDrivers(),
+];
 
 try {
 	require_once __DIR__ . '/inc/config/constants.php';

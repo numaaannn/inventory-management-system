@@ -1,5 +1,5 @@
 <?php
-	session_start();
+	require_once('inc/config/session.php');
 	// Redirect the user to login page if he is not logged in.
 	if(!isset($_SESSION['loggedIn'])){
 		header('Location: login.php');

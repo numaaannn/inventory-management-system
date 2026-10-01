@@ -1,5 +1,5 @@
 <?php
-	session_start();
+	require_once('inc/config/session.php');
 	
 	// Check if user is already logged in
 	if(isset($_SESSION['loggedIn'])){

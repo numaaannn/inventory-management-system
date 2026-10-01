@@ -1,5 +1,5 @@
 <?php
-	session_start();
+	require_once('../../inc/config/session.php');
 	
 	unset($_SESSION['loggedIn']);
 	unset($_SESSION['fullName']);
